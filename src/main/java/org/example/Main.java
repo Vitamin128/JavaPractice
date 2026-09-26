@@ -1,11 +1,15 @@
 package org.example;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+//@Slf4j
 public class Main {
     private static void func1()
     {
@@ -93,7 +97,16 @@ public class Main {
         System.out.println(user1.name);
         System.out.println(user2.name);
     }
-    public static void main(String[] args) {
+    public static void func()
+    {
+        Person p1=new Person("甘初豪",new Address("北京"));
+        Person p2=p1.clone();
 
+        p2.address.city="上海";
+        System.out.println(p1.address.city);
+        System.out.println(p2.address.city);
+    }
+    public static void main(String[] args) {
+        func();
     }
 }
