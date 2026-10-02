@@ -1,25 +1,19 @@
 package org.example;
 
-public class Person implements Cloneable
+import java.net.IDN;
+
+public class Person
 {
-    Address address;
-    String name;
-    Person(String name,Address address)
+    Integer id;
+    String department;
+
+    public int GetId()
     {
-        this.name=name;
-        this.address=address;
+        return id;
+    }
+    public String GetDepartment()
+    {
+        return department;
     }
 
-    @Override
-    public Person clone()
-    {
-        try {
-            Person copy= (Person) super.clone();
-            copy.address=(Address) address.clone();
-            return copy;
-        }
-        catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

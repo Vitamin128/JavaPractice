@@ -1,16 +1,20 @@
 package org.example;
 
-public class User implements Cloneable{
-    public User clone()
+import java.security.PublicKey;
+
+public class User extends Person{
+    public User(String _name,int _age,int _id,String _department)
     {
-        try {
-            return (User) super.clone();
-        }
-        catch (CloneNotSupportedException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        name=_name;
+        age=_age;
+        id=_id;
+        department=_department;
     }
+
     public String name;
+    public int age;
+
+    public int GetAge() {
+        return age;
+    }
 }
