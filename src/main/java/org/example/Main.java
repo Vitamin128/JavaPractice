@@ -141,15 +141,15 @@ public class Main {
                 new User("小天", 90, 60, "研发部"),
                 new User("小豆", 2, 1, "研发部"));
         Map<String, List<Integer>> UsersOut = users.stream()
-                .collect(Collectors.groupingBy(User::GetDepartment, Collectors.mapping(User::GetAge,Collectors.toList())));
+                .collect(Collectors.groupingBy(User::GetDepartment, Collectors.mapping(User::GetAge, Collectors.toList())));
 
         for (Map.Entry<String, List<Integer>> item : UsersOut.entrySet()) {
-            for(Integer Item :item.getValue())
-            {
-                System.out.println("name:"+ item.getKey()+"age:"+ Item);
+            for (Integer Item : item.getValue()) {
+                System.out.println("name:" + item.getKey() + "age:" + Item);
             }
         }
     }
+
     public static void func11() {
         List<User> users = Arrays.asList(
                 new User("小明", 20, 2, "研发部"),
@@ -202,14 +202,39 @@ public class Main {
 //        Optional<String>op2=st2.reduce("",(before,after)->before+after);
 
     }
-    public static void func()
+
+    public static void expensiveCalculation(Integer num)
     {
-        ArrayList<Integer>numbers= new ArrayList<>(List.of(10,15,80,30,20));
-        for(Integer num:numbers)
-        {
-            System.out.println(num);
+        try {
+            Thread.sleep(1000);
         }
+        catch (InterruptedException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(Thread.currentThread().getName()+":"+num);
     }
+    public static void func() {
+//        ArrayList<Integer>numbers= new ArrayList<>(List.of(10,15,80,30,20));
+//        for(Integer num:numbers)
+//        {
+//            System.out.println(num);
+//        }
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(10, 20, 30, 40, 50, 60));
+//        numbers.set(2,-10);
+//        for(Integer num:numbers)
+//        {
+//            System.out.println(num);
+//        }
+        numbers.parallelStream().forEach(n->{
+            expensiveCalculation(n);
+        });
+
+        numbers.stream().forEach(n->{
+            expensiveCalculation(n);
+        });
+    }
+
     public static void main(String[] args) {
         func();
 
