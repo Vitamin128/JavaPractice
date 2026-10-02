@@ -141,12 +141,14 @@ public class Main {
                 new User("小李", 5, 50, "销售部"),
                 new User("小天", 90, 60, "研发部"),
                 new User("小豆", 2, 1, "研发部"));
-        Map<String, Long> UsersOut = users.stream()
-                .sorted(Comparator.comparingInt(Person::GetId))
-                .collect(Collectors.groupingBy(User::GetDepartment, Collectors.counting()));
+        Map<String, List<Integer>> UsersOut = users.stream()
+                .collect(Collectors.groupingBy(User::GetDepartment, Collectors.mapping(User::GetAge,Collectors.toList())));
 
-        for (Map.Entry<String, Long> item : UsersOut.entrySet()) {
-            System.out.println("department:" + item.getKey() + ",id:" + user.id + ",age:" + user.age + ",name:" + user.name);
+        for (Map.Entry<String, List<Integer>> item : UsersOut.entrySet()) {
+            for(int i=0;i<item.getValue().size();i++)
+            {
+                System.out.println("name:"+item.getKey()+"age:"+item.getValue().get(i));
+            }
         }
     }
 
