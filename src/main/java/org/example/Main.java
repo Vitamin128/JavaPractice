@@ -1,13 +1,11 @@
 package org.example;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.lang.reflect.Array;
+import javax.print.DocFlavor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -133,7 +131,7 @@ public class Main {
         }
     }
 
-    public static void func() {
+    public static void func10() {
         List<User> users = Arrays.asList(
                 new User("小明", 10, 2, "研发部"),
                 new User("小红", 20, 5, "销售部"),
@@ -145,11 +143,50 @@ public class Main {
                 .collect(Collectors.groupingBy(User::GetDepartment, Collectors.mapping(User::GetAge,Collectors.toList())));
 
         for (Map.Entry<String, List<Integer>> item : UsersOut.entrySet()) {
-            for(int i=0;i<item.getValue().size();i++)
+            for(Integer Item :item.getValue())
             {
-                System.out.println("name:"+item.getKey()+"age:"+item.getValue().get(i));
+                System.out.println("name:"+ item.getKey()+"age:"+ Item);
             }
         }
+    }
+    public static void func() {
+        List<User> users = Arrays.asList(
+                new User("小明", 20, 2, "研发部"),
+                new User("小红", 20, 2, "销售部"),
+                new User("小刚", 50, 10, "运营部"),
+                new User("小李", 5, 50, "销售部"),
+                new User("小甘", 20, 60, "研发部"),
+                new User("小天", 20, 60, "研发部"),
+                new User("小豆", 2, 1, "研发部"));
+//        Map<String,List<User>>userOut=users.stream().sorted(Comparator.comparingInt(User::GetAge)).collect(Collectors.groupingBy(user -> user.age>=18?"成年":"未成年"));
+//        Map<String,List<User>>userOut=users.stream().collect(Collectors.groupingBy(User::GetDepartment));
+//        for(Map.Entry<String,List<User>>item:userOut.entrySet())
+//        {
+//            for(User out:item.getValue())
+//            {
+//                System.out.println("详情:"+item.getKey()+",DESC:"+out.toString());
+//            }
+//        }
+//        Long ret=users.stream().filter(u->u.id>=10).map(User::GetAge).distinct().count();
+//        Long ret= Stream.empty().count();
+//        System.out.println(ret);
+//        Stream<String>st1=Stream.of("A","B","C");
+//        Long ret=st1.count();
+//        System.out.println(ret);
+//        Stream<Integer> st1=Stream.of(10,20,30,40,50);
+////        boolean ret=st1.anyMatch(u->{
+////            System.out.println(u);
+////            return u>15;
+////        });
+//        int sum=st1.reduce(0,(a,b)->{
+//            int temp=10;
+//            return a+b+temp;
+//        });
+//        Stream<String>st1=Stream.of("name1","name2","name3","name4");
+//        String st=st1.reduce("",(before,after)->{
+//           return before+":"+after;
+//        });
+//        System.out.println(st);
     }
 
     public static void main(String[] args) {
