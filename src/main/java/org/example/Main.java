@@ -1,6 +1,7 @@
 package org.example;
 
 import javax.print.DocFlavor;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -149,7 +150,7 @@ public class Main {
             }
         }
     }
-    public static void func() {
+    public static void func11() {
         List<User> users = Arrays.asList(
                 new User("小明", 20, 2, "研发部"),
                 new User("小红", 20, 2, "销售部"),
@@ -187,9 +188,30 @@ public class Main {
 //           return before+":"+after;
 //        });
 //        System.out.println(st);
-    }
+//        Stream<String>st1=Stream.of("ABC","DEF","GHI","JKL");
+//        Stream<String>st2=Stream.of("ABC","DEF","GHI","JKL");
+//
+//        Optional<String>op1=st1.reduce((before,after)->before+after);
+//        Optional<Integer>ret=Optional.empty();
+//        Integer num=ret.orElse(10);
+//        System.out.println(num);
+//        if(op1.isPresent())
+//        {
+//            System.out.println(op1.get());
+//        }
+//        Optional<String>op2=st2.reduce("",(before,after)->before+after);
 
+    }
+    public static void func()
+    {
+        ArrayList<Integer>numbers= new ArrayList<>(List.of(10,15,80,30,20));
+        for(Integer num:numbers)
+        {
+            System.out.println(num);
+        }
+    }
     public static void main(String[] args) {
         func();
+
     }
 }
